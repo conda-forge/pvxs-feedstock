@@ -11,17 +11,19 @@ source:
     - 0001-Add-environment-variable-for-softIocPVX.dbd.patch
 
 build:
-  skip: True  # [win or osx]
+  skip: True  # [osx]
   number: 0
   run_exports:
     - {{ pin_subpackage('pvxs', max_pin='x.x.x') }}
 
 requirements:
   build:
-    - make
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}  # [linux]
     - {{ compiler('cxx') }}
-    - {{ stdlib("c") }}
+    - make
+    - perl
+    - m2-patch  # [win]
   host:
     - epics-base
     - libevent
@@ -38,8 +40,11 @@ test:
     - pvxvct -V
     - softIocPVX -V
   files:
-    - lib/libpvxs.so
-    - lib/libpvxsIoc.so
+    - lib/libpvxs.so  # [linux]
+    - lib/libpvxsIoc.so  # [linux]
+    # Windows dlls go into bin/
+    - bin/libpvxs.dll  # [win]
+    - bin/libpvxsIoc.dll  # [win]
     - include/pvxs/version.h
 
 about:
