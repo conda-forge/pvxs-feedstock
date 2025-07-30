@@ -15,7 +15,7 @@ OP_SYS_INCLUDES += -I${PREFIX}/include
 EOF
 fi
 
-make install
+make -j${CPU_COUNT} install
 
 install -d ${PREFIX}/include/pvxs ${PREFIX}/bin/ ${PREFIX}/lib/ ${PREFIX}/pvxs/dbd ${PREFIX}/pvxs/db
 install bin/${EPICS_HOST_ARCH}/* ${PREFIX}/bin/
