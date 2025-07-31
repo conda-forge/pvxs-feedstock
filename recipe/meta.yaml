@@ -47,6 +47,10 @@ test:
     - bin/pvxsIoc.dll  # [win]
     - lib/pvxs.lib  # [win]
     - lib/pvxsIoc.lib  # [win]
+    # EPICS base DLLs
+    - bin/Com.dll  # [win]
+    - bin/dbCore.dll  # [win]
+    - bin/dbRecStd.dll  # [win]
     - include/pvxs/version.h
 
 about:
