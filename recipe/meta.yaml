@@ -42,9 +42,11 @@ test:
   files:
     - lib/libpvxs.so  # [linux]
     - lib/libpvxsIoc.so  # [linux]
-    # Windows dlls go into bin/
-    - bin/libpvxs.dll  # [win]
-    - bin/libpvxsIoc.dll  # [win]
+    # Windows DLLs go into bin/
+    - bin/pvxs.dll  # [win]
+    - bin/pvxsIoc.dll  # [win]
+    - lib/pvxs.lib  # [win]
+    - lib/pvxsIoc.lib  # [win]
     - include/pvxs/version.h
 
 about:
