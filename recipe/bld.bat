@@ -28,7 +28,8 @@ copy "include\pvxs\*"              "%PREFIX%\include\pvxs\" >nul
 copy "dbd\*"                       "%PREFIX%\pvxs\dbd\"     >nul
 copy "db\*"                        "%PREFIX%\pvxs\db\"      >nul
 
-mkdir "%PREFIX%\etc\conda\activate.d" "%PREFIX%\etc\conda\deactivate.d"
+if not exist "%PREFIX%\etc\conda\activate.d" mkdir "%PREFIX%\etc\conda\activate.d"
+if not exist "%PREFIX%\etc\conda\deactivate.d" mkdir "%PREFIX%\etc\conda\deactivate.d"
 echo @echo off> "%PREFIX%\etc\conda\activate.d\pvxs_activate.bat"
 echo set PVXS=%PREFIX%\pvxs\>> "%PREFIX%\etc\conda\activate.d\pvxs_activate.bat"
 echo @echo off> "%PREFIX%\etc\conda\deactivate.d\pvxs_deactivate.bat"
