@@ -36,6 +36,7 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+<<<<<<< HEAD
               <td>osx_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=26261&branchName=main">
@@ -47,6 +48,12 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=26261&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pvxs-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
+=======
+              <td>win_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=26261&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pvxs-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
+>>>>>>> upstream/main
                 </a>
               </td>
             </tr>

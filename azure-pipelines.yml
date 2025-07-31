@@ -29,4 +29,8 @@ stages:
   dependsOn: Check
   jobs:
     - template: ./.azure-pipelines/azure-pipelines-linux.yml
+<<<<<<< HEAD
     - template: ./.azure-pipelines/azure-pipelines-osx.yml
+=======
+    - template: ./.azure-pipelines/azure-pipelines-win.yml
+>>>>>>> upstream/main
