@@ -20,10 +20,6 @@ if [[ "$target_platform" == osx* ]]; then
   cat << EOF >> configure/CONFIG_SITE.local
 # Force EPICS to use its built-in command line library instead of readline
 COMMANDLINE_LIBRARY=EPICS
-
-# Override library search paths
-OP_SYS_LDFLAGS += -Wl,-rpath,${PREFIX}/lib -L${PREFIX}/lib
-OP_SYS_INCLUDES += -I${PREFIX}/include
 EOF
 fi
 
