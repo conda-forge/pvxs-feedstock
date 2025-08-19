@@ -1,0 +1,151 @@
+diff --git a/example/Makefile b/example/Makefile
+index 44782327e..8e5a57849 100644
+--- a/example/Makefile
++++ b/example/Makefile
+@@ -1,6 +1,10 @@
+ TOP=..
+ 
+ include $(TOP)/configure/CONFIG
++# cfg/ sometimes isn't correctly included due to a Base bug
++# so we do here (maybe again) as workaround
++include $(TOP)/setup/CONFIG_PVXS_MODULE
++include $(TOP)/configure/CONFIG_PVXS_VERSION
+ #----------------------------------------
+ #  ADD MACRO DEFINITIONS AFTER THIS LINE
+ #=============================
+@@ -35,6 +31,7 @@ rpc_client_SRCS += rpc_client.cpp
+ #===========================
+ 
+ include $(TOP)/configure/RULES
++include $(TOP)/setup/RULES_PVXS_MODULE
+ #----------------------------------------
+ #  ADD RULES AFTER THIS LINE
+ 
+diff --git a/ioc/Makefile b/ioc/Makefile
+index 8366e9c1e..5cc7f5e78 100644
+--- a/ioc/Makefile
++++ b/ioc/Makefile
+@@ -9,6 +9,10 @@
+ TOP=..
+ 
+ include $(TOP)/configure/CONFIG
++# cfg/ sometimes isn't correctly included due to an issue in epics-base
++# so we do here (maybe again) as workaround
++include $(TOP)/setup/CONFIG_PVXS_MODULE
++include $(TOP)/configure/CONFIG_PVXS_VERSION
+ #----------------------------------------
+ #  ADD MACRO DEFINITIONS AFTER THIS LINE
+ #=============================
+@@ -85,6 +81,7 @@ LIB_LIBS += $(EPICS_BASE_IOC_LIBS)
+ #===========================
+ 
+ include $(TOP)/configure/RULES
++include $(TOP)/setup/RULES_PVXS_MODULE
+ #----------------------------------------
+ #  ADD RULES AFTER THIS LINE
+ 
+diff --git a/qsrv/Makefile b/qsrv/Makefile
+index 6faf92743..03b3f1b86 100644
+--- a/qsrv/Makefile
++++ b/qsrv/Makefile
+@@ -1,6 +1,10 @@
+ TOP=..
+ 
+ include $(TOP)/configure/CONFIG
++# cfg/ sometimes isn't correctly included due to a Base bug
++# so we do here (maybe again) as workaround
++include $(TOP)/setup/CONFIG_PVXS_MODULE
++include $(TOP)/configure/CONFIG_PVXS_VERSION
+ #----------------------------------------
+ #  ADD MACRO DEFINITIONS AFTER THIS LINE
+ #=============================
+@@ -31,6 +27,7 @@ FINAL_LOCATION ?= $(shell $(PERL) $(TOOLS)/fullPathName.pl $(INSTALL_LOCATION))
+ #===========================
+ 
+ include $(TOP)/configure/RULES
++include $(TOP)/setup/RULES_PVXS_MODULE
+ #----------------------------------------
+ #  ADD RULES AFTER THIS LINE
+ 
+diff --git a/src/Makefile b/src/Makefile
+index 4a885d52a..d062f46fa 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -1,6 +1,10 @@
+ TOP=..
+ 
+ include $(TOP)/configure/CONFIG
++# cfg/ sometimes isn't correctly included due to a Base bug
++# so we do here (maybe again) as workaround
++include $(TOP)/setup/CONFIG_PVXS_MODULE
++include $(TOP)/configure/CONFIG_PVXS_VERSION
+ #----------------------------------------
+ #  ADD MACRO DEFINITIONS AFTER THIS LINE
+ #=============================
+@@ -122,6 +118,7 @@ LIB_SYS_LIBS += $(LIBEVENT_SYS_LIBS)
+ #===========================
+ 
+ include $(TOP)/configure/RULES
++include $(TOP)/setup/RULES_PVXS_MODULE
+ #----------------------------------------
+ #  ADD RULES AFTER THIS LINE
+ 
+diff --git a/test/Makefile b/test/Makefile
+index cac18293a..d26f93597 100644
+--- a/test/Makefile
++++ b/test/Makefile
+@@ -1,6 +1,10 @@
+ TOP=..
+ 
+ include $(TOP)/configure/CONFIG
++# cfg/ sometimes isn't correctly included due to a Base bug
++# so we do here (maybe again) as workaround
++include $(TOP)/setup/CONFIG_PVXS_MODULE
++include $(TOP)/configure/CONFIG_PVXS_VERSION
+ #----------------------------------------
+ #  ADD MACRO DEFINITIONS AFTER THIS LINE
+ #=============================
+@@ -191,6 +187,7 @@ endif
+ #===========================
+ 
+ include $(TOP)/configure/RULES
++include $(TOP)/setup/RULES_PVXS_MODULE
+ #----------------------------------------
+ #  ADD RULES AFTER THIS LINE
+ 
+diff --git a/tools/Makefile b/tools/Makefile
+index 4e3eef48c..18785fcaf 100644
+--- a/tools/Makefile
++++ b/tools/Makefile
+@@ -1,6 +1,10 @@
+ TOP=..
+ 
+ include $(TOP)/configure/CONFIG
++# cfg/ sometimes isn't correctly included due to a Base bug
++# so we do here (maybe again) as workaround
++include $(TOP)/setup/CONFIG_PVXS_MODULE
++include $(TOP)/configure/CONFIG_PVXS_VERSION
+ #----------------------------------------
+ #  ADD MACRO DEFINITIONS AFTER THIS LINE
+ #=============================
+@@ -41,6 +37,7 @@ pvxmshim_SRCS += mshim.cpp
+ #===========================
+ 
+ include $(TOP)/configure/RULES
++include $(TOP)/setup/RULES_PVXS_MODULE
+ #----------------------------------------
+ #  ADD RULES AFTER THIS LINE
+ 
+diff --git a/setup/CONFIG_PVXS_MODULE b/setup/CONFIG_PVXS_MODULE
+index df4be82..c35fd85 100644
+--- a/setup/CONFIG_PVXS_MODULE
++++ b/setup/CONFIG_PVXS_MODULE
+@@ -9,7 +9,7 @@ _PVXS_CONF_INCLUDED := YES
+ ifdef T_A
+ 
+ ifneq (YES,$(_PVXS_BOOTSTRAP))
+-include $(_PVXS)/TOOLCHAIN_PVXS.$(T_A)
++include $(_PVXS)/../cfg/TOOLCHAIN_PVXS.$(T_A)
+ endif
+ 
+ # from generated cfg/TOOLCHAIN_PVXS.$(T_A)

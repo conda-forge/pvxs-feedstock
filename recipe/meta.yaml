@@ -9,6 +9,7 @@ source:
   sha256: 10d11809ad1e9049d0b85260b1e417570f07c2d468494064dcf0abeac090ed16
   patches:
     - 0001-Add-environment-variable-for-softIocPVX.dbd.patch
+    - 0002-Workaround-cfg-include-bug.patch
 
 build:
   number: 0
