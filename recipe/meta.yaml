@@ -12,7 +12,7 @@ source:
     - 0002-Workaround-cfg-include-bug.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('pvxs', max_pin='x.x.x') }}
 

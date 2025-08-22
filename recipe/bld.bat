@@ -9,7 +9,7 @@ if "%ARCH%"=="32" (
 
 echo EPICS_BASE=%EPICS_BASE%> configure\RELEASE.local
 
-set "SCRIPTS="                       :: avoid python-scripts masking make
+set "SCRIPTS=" & :: avoid python-scripts masking make
 set "PATH=%BUILD_PREFIX%\Library\bin;%BUILD_PREFIX%\Library\usr\bin;%PATH%"
 
 make -j %CPU_COUNT%

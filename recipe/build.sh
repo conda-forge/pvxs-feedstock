@@ -1,15 +1,9 @@
 #!/bin/bash
 
 if [[ "$target_platform" == "osx-arm64" ]]; then
-  EPICS_HOST_ARCH="darwin-aarch64"
-elif [[ "$target_platform" == "osx-64" ]]; then
-  EPICS_HOST_ARCH="darwin-x86"
-elif [[ "$target_platform" == "linux-64" ]]; then
-  EPICS_HOST_ARCH="linux-x86_64"
-elif [[ "$target_platform" == "linux-aarch64" ]]; then
-  EPICS_HOST_ARCH="linux-aarch64"
+  export EPICS_HOST_ARCH="darwin-aarch64"
 else
-  EPICS_HOST_ARCH=$(perl ${EPICS_BASE}/lib/perl/EpicsHostArch.pl)
+  export EPICS_HOST_ARCH=$(perl ${EPICS_BASE}/lib/perl/EpicsHostArch.pl)
 fi
 
 cat <<EOF > configure/RELEASE.local
