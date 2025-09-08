@@ -18,15 +18,22 @@ if errorlevel 1 (
     exit /b 1
 )
 
-mkdir "%PREFIX%\bin" "%PREFIX%\lib" ^
-      "%PREFIX%\include\pvxs" "%PREFIX%\pvxs\dbd" "%PREFIX%\pvxs\db"
+rem Install to both conda and EPICS locations
+mkdir "%PREFIX%\Library\bin" ^
+      "%PREFIX%\Library\lib" ^
+      "%PREFIX%\Library\include\pvxs" ^
+      "%PREFIX%\pvxs\include\pvxs" ^
+      "%PREFIX%\pvxs\dbd" ^
+      "%PREFIX%\pvxs\db" >nul
 
-copy "bin\%EPICS_HOST_ARCH%\*.exe"              "%PREFIX%\bin\" >nul
-copy "bin\%EPICS_HOST_ARCH%\*.dll"              "%PREFIX%\bin\" >nul
-copy "lib\%EPICS_HOST_ARCH%\*.lib"              "%PREFIX%\lib\" >nul
-copy "include\pvxs\*"                           "%PREFIX%\include\pvxs\" >nul
-copy "dbd\*"                                    "%PREFIX%\pvxs\dbd\" >nul
-copy "db\*"                                     "%PREFIX%\pvxs\db\" >nul
+copy "bin\%EPICS_HOST_ARCH%\*.exe" "%PREFIX%\Library\bin\" >nul
+copy "bin\%EPICS_HOST_ARCH%\*.dll" "%PREFIX%\Library\bin\" >nul
+copy "lib\%EPICS_HOST_ARCH%\*.lib" "%PREFIX%\Library\lib\" >nul
+copy "include\pvxs\*"              "%PREFIX%\Library\include\pvxs\" >nul
+
+copy "include\pvxs\*"              "%PREFIX%\pvxs\include\pvxs\" >nul
+copy "dbd\*"                       "%PREFIX%\pvxs\dbd\" >nul
+copy "db\*"                        "%PREFIX%\pvxs\db\" >nul
 
 if not exist "%PREFIX%\etc\conda\activate.d" mkdir "%PREFIX%\etc\conda\activate.d"
 if not exist "%PREFIX%\etc\conda\deactivate.d" mkdir "%PREFIX%\etc\conda\deactivate.d"

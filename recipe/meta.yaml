@@ -44,15 +44,10 @@ test:
     - lib/libpvxsIoc.so  # [linux]
     - lib/libpvxs.dylib  # [osx]
     - lib/libpvxsIoc.dylib  # [osx]
-    # Windows DLLs go into bin/
-    - bin/pvxs.dll  # [win]
-    - bin/pvxsIoc.dll  # [win]
-    - lib/pvxs.lib  # [win]
-    - lib/pvxsIoc.lib  # [win]
-    # EPICS base DLLs
-    - bin/Com.dll  # [win]
-    - bin/dbCore.dll  # [win]
-    - bin/dbRecStd.dll  # [win]
+    - Library/bin/pvxs.dll  # [win]
+    - Library/bin/pvxsIoc.dll  # [win]
+    - Library/lib/pvxs.lib  # [win]
+    - Library/lib/pvxsIoc.lib  # [win]
     - include/pvxs/version.h
 
 about:
