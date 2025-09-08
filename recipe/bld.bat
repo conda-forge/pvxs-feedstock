@@ -24,8 +24,6 @@ mkdir "%PREFIX%\bin" "%PREFIX%\lib" ^
 copy "bin\%EPICS_HOST_ARCH%\*.exe"              "%PREFIX%\bin\" >nul
 copy "bin\%EPICS_HOST_ARCH%\*.dll"              "%PREFIX%\bin\" >nul
 copy "lib\%EPICS_HOST_ARCH%\*.lib"              "%PREFIX%\lib\" >nul
-rem We need to copy the DLLs from EPICS base
-copy "%EPICS_BASE%\bin\%EPICS_HOST_ARCH%\*.dll" "%PREFIX%\bin\" >nul
 copy "include\pvxs\*"                           "%PREFIX%\include\pvxs\" >nul
 copy "dbd\*"                                    "%PREFIX%\pvxs\dbd\" >nul
 copy "db\*"                                     "%PREFIX%\pvxs\db\" >nul
