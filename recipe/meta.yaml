@@ -19,7 +19,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ stdlib('c') }}  # [linux]
+    - {{ stdlib('c') }}  # [unix]
     - {{ compiler('cxx') }}
     - make
     - perl
