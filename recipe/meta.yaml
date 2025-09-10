@@ -40,14 +40,14 @@ test:
     - pvxvct -V
     - softIocPVX -V
   files:
-    - lib/libpvxs.so  # [linux]
-    - lib/libpvxsIoc.so  # [linux]
-    - lib/libpvxs.dylib  # [osx]
-    - lib/libpvxsIoc.dylib  # [osx]
-    - Library/bin/pvxs.dll  # [win]
-    - Library/bin/pvxsIoc.dll  # [win]
-    - Library/lib/pvxs.lib  # [win]
-    - Library/lib/pvxsIoc.lib  # [win]
+    - lib/libpvxs.so            # [linux]
+    - lib/libpvxsIoc.so         # [linux]
+    - lib/libpvxs.dylib         # [osx]
+    - lib/libpvxsIoc.dylib      # [osx]
+    - Library/bin/pvxs.dll      # [win]
+    - Library/bin/pvxsIoc.dll   # [win]
+    - Library/lib/pvxs.lib      # [win]
+    - Library/lib/pvxsIoc.lib   # [win]
     - include/pvxs/version.h
 
 about:
