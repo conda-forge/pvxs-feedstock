@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: 1.4.0
+  version: "1.4.1"
 
 package:
   name: pvxs
@@ -9,13 +9,13 @@ package:
 
 source:
   url: https://github.com/epics-base/pvxs/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 10d11809ad1e9049d0b85260b1e417570f07c2d468494064dcf0abeac090ed16
+  sha256: 96a41cf88ea7e4f608840c713edfc9ed9a70b5e9d0ff0813647ed518b227af10
   patches:
     - 0001-Add-environment-variable-for-softIocPVX.dbd.patch
     - 0002-Workaround-cfg-include-bug.patch
 
 build:
-  number: 5
+  number: 0
 
 requirements:
   build:
@@ -36,21 +36,19 @@ tests:
   - files:
       recipe:
         - if: linux
-          then: lib/libpvxs.so
-        - if: linux
-          then: lib/libpvxsIoc.so
+          then:
+            - lib/libpvxs.so
+            - lib/libpvxsIoc.so
         - if: osx
-          then: lib/libpvxs.dylib
-        - if: osx
-          then: lib/libpvxsIoc.dylib
+          then:
+            - lib/libpvxs.dylib
+            - lib/libpvxsIoc.dylib
         - if: win
-          then: Library/bin/pvxs.dll
-        - if: win
-          then: Library/bin/pvxsIoc.dll
-        - if: win
-          then: Library/lib/pvxs.lib
-        - if: win
-          then: Library/lib/pvxsIoc.lib
+          then:
+            - Library/bin/pvxs.dll
+            - Library/bin/pvxsIoc.dll
+            - Library/lib/pvxs.lib
+            - Library/lib/pvxsIoc.lib
         - include/pvxs/version.h
     script:
       - pvxcall -V
