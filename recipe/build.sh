@@ -30,14 +30,22 @@ install -m 0664 include/pvxs/* ${PREFIX}/include/pvxs/
 install -m 0664 dbd/* ${PREFIX}/pvxs/dbd
 install -m 0664 db/* ${PREFIX}/pvxs/db
 
+IFS='.' read -r MAJOR MINOR MAINTENANCE <<< "$PKG_VERSION"
+
 mkdir -p $PREFIX/etc/conda/activate.d
 cat <<EOF > $PREFIX/etc/conda/activate.d/pvxs_activate.sh
 export PVXS="${PREFIX}/pvxs/"
+export PVXS_MAJOR_VERSION="${MAJOR}"
+export PVXS_MINOR_VERSION="${MINOR}"
+export PVXS_MAINTENANCE_VERSION="${MAINTENANCE}"
 EOF
 
 mkdir -p $PREFIX/etc/conda/deactivate.d
 cat <<EOF > $PREFIX/etc/conda/deactivate.d/pvxs_deactivate.sh
 unset PVXS
+unset PVXS_MAJOR_VERSION
+unset PVXS_MINOR_VERSION
+unset PVXS_MAINTENANCE_VERSION
 EOF
 
 if [[ "$target_platform" == osx* ]]; then
