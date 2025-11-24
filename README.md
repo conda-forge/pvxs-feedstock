@@ -3,11 +3,26 @@ About pvxs-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pvxs-feedstock/blob/main/LICENSE.txt)
 
+
+About pvxs
+----------
+
 Home: https://github.com/epics-base/pvxs/
 
 Package license: BSD-4-Clause-UC
 
 Summary: Library and a set of CLI utilities acting as PVAccess protocol client and/or server
+
+Documentation: https://epics-base.github.io/pvxs/
+
+About pvxslibs
+--------------
+
+Home: https://github.com/epics-base/pvxs/
+
+Package license: BSD-4-Clause-UC
+
+Summary: Python bindings for PVXS library
 
 Documentation: https://epics-base.github.io/pvxs/
 
@@ -70,6 +85,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pvxs-green.svg)](https://anaconda.org/conda-forge/pvxs) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pvxs.svg)](https://anaconda.org/conda-forge/pvxs) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pvxs.svg)](https://anaconda.org/conda-forge/pvxs) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pvxs.svg)](https://anaconda.org/conda-forge/pvxs) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pvxslibs-green.svg)](https://anaconda.org/conda-forge/pvxslibs) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pvxslibs.svg)](https://anaconda.org/conda-forge/pvxslibs) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pvxslibs.svg)](https://anaconda.org/conda-forge/pvxslibs) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pvxslibs.svg)](https://anaconda.org/conda-forge/pvxslibs) |
 
 Installing pvxs
 ===============
@@ -81,16 +97,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `pvxs` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `pvxs, pvxslibs` can be installed with `conda`:
 
 ```
-conda install pvxs
+conda install pvxs pvxslibs
 ```
 
 or with `mamba`:
 
 ```
-mamba install pvxs
+mamba install pvxs pvxslibs
 ```
 
 It is possible to list all of the versions of `pvxs` available on your platform with `conda`:
