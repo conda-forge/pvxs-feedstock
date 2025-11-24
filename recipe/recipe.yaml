@@ -69,12 +69,6 @@ outputs:
           then: build-pvxs.sh
         - if: win
           then: build-pvxs.bat
-    about:
-      license: BSD-4-Clause-UC
-      license_file: LICENSE
-      summary: Library and a set of CLI utilities acting as PVAccess protocol client and/or server
-      homepage: https://github.com/epics-base/pvxs/
-      documentation: https://epics-base.github.io/pvxs/
 
   - package:
       name: pvxslibs
@@ -104,12 +98,13 @@ outputs:
     build:
       script:
         - pip install . --no-deps --no-build-isolation -vv
-    about:
-      license: BSD-4-Clause-UC
-      license_file: LICENSE
-      summary: Python bindings for PVXS library
-      homepage: https://github.com/epics-base/pvxs/
-      documentation: https://epics-base.github.io/pvxs/
+
+about:
+  license: BSD-4-Clause-UC
+  license_file: LICENSE
+  summary: Python bindings for PVXS library
+  homepage: https://github.com/epics-base/pvxs/
+  documentation: https://epics-base.github.io/pvxs/
 
 extra:
   recipe-maintainers:
