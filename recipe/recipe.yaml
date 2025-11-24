@@ -84,6 +84,7 @@ outputs:
       host:
         - python
         - pip
+        - setuptools
         - setuptools_dso
         - epicscorelibs
         - ${{ pin_subpackage('pvxs', exact=True) }}
