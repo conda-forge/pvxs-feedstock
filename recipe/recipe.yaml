@@ -3,8 +3,8 @@ schema_version: 1
 context:
   version: "1.4.1"
 
-package:
-  name: pvxs
+recipe:
+  name: pvxs-split
   version: ${{ version }}
 
 source:
@@ -15,58 +15,101 @@ source:
     - 0002-Workaround-cfg-include-bug.patch
 
 build:
-  number: 1
+  number: 2
 
-requirements:
-  build:
-    - ${{ compiler('c') }}
-    - ${{ stdlib('c') }}
-    - ${{ compiler('cxx') }}
-    - make
-    - perl
-    - if: win
-      then: m2-patch
-  host:
-    - epics-base
-    - libevent
-  run_exports:
-    - ${{ pin_subpackage('pvxs', upper_bound='x.x.x') }}
-
-tests:
-  - files:
-      recipe:
-        - if: linux
-          then:
-            - lib/libpvxs.so
-            - lib/libpvxsIoc.so
-        - if: osx
-          then:
-            - lib/libpvxs.dylib
-            - lib/libpvxsIoc.dylib
+outputs:
+  - package:
+      name: pvxs
+      version: ${{ version }}
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - make
+        - perl
         - if: win
-          then:
-            - Library/bin/pvxs.dll
-            - Library/bin/pvxsIoc.dll
-            - Library/lib/pvxs.lib
-            - Library/lib/pvxsIoc.lib
-        - include/pvxs/version.h
-    script:
-      - pvxcall -V
-      - pvxget -V
-      - pvxinfo -V
-      - pvxlist -V
-      - pvxmonitor -V
-      - pvxmshim -V
-      - pvxput -V
-      - pvxvct -V
-      - softIocPVX -V
+          then: m2-patch
+      host:
+        - epics-base
+        - libevent
+      run_exports:
+        - ${{ pin_subpackage('pvxs', upper_bound='x.x.x') }}
+    tests:
+      - files:
+          recipe:
+            - if: linux
+              then:
+                - lib/libpvxs.so
+                - lib/libpvxsIoc.so
+            - if: osx
+              then:
+                - lib/libpvxs.dylib
+                - lib/libpvxsIoc.dylib
+            - if: win
+              then:
+                - Library/bin/pvxs.dll
+                - Library/bin/pvxsIoc.dll
+                - Library/lib/pvxs.lib
+                - Library/lib/pvxsIoc.lib
+            - include/pvxs/version.h
+        script:
+          - pvxcall -V
+          - pvxget -V
+          - pvxinfo -V
+          - pvxlist -V
+          - pvxmonitor -V
+          - pvxmshim -V
+          - pvxput -V
+          - pvxvct -V
+          - softIocPVX -V
+    build:
+      script:
+        - if: unix
+          then: build-pvxs.sh
+        - if: win
+          then: build-pvxs.bat
+    about:
+      license: BSD-4-Clause-UC
+      license_file: LICENSE
+      summary: Library and a set of CLI utilities acting as PVAccess protocol client and/or server
+      homepage: https://github.com/epics-base/pvxs/
+      documentation: https://epics-base.github.io/pvxs/
 
-about:
-  license: BSD-4-Clause-UC
-  license_file: LICENSE
-  summary: Library and a set of CLI utilities acting as PVAccess protocol client and/or server
-  homepage: https://github.com/epics-base/pvxs/
-  documentation: https://epics-base.github.io/pvxs/
+  - package:
+      name: pvxslibs
+      version: ${{ version }}
+    requirements:
+      build:
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - ${{ compiler('cxx') }}
+        - python
+        - pip
+        - setuptools_dso
+      host:
+        - python
+        - pip
+        - setuptools_dso
+        - epicscorelibs
+        - ${{ pin_subpackage('pvxs', exact=True) }}
+      run:
+        - python
+        - ${{ pin_subpackage('pvxs', exact=True) }}
+        - epicscorelibs
+    tests:
+      - python:
+          imports:
+            - pvxslibs
+    build:
+      script:
+        - pip install . --no-deps --no-build-isolation -vv
+    about:
+      license: BSD-4-Clause-UC
+      license_file: LICENSE
+      summary: Python bindings for PVXS library
+      homepage: https://github.com/epics-base/pvxs/
+      documentation: https://epics-base.github.io/pvxs/
 
 extra:
   recipe-maintainers:
