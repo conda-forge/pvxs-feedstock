@@ -84,7 +84,7 @@ outputs:
       host:
         - python
         - pip
-        - setuptools
+        - setuptools <81
         - wheel
         - setuptools_dso
         - epicscorelibs
