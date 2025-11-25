@@ -97,9 +97,6 @@ outputs:
       - python:
           imports:
             - pvxslibs
-    build:
-      script:
-        - pip install . --no-deps --no-build-isolation -vv
 
 about:
   license: BSD-4-Clause-UC
