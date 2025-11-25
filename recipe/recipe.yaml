@@ -85,6 +85,7 @@ outputs:
         - python
         - pip
         - setuptools
+        - wheel
         - setuptools_dso
         - epicscorelibs
         - ${{ pin_subpackage('pvxs', exact=True) }}
