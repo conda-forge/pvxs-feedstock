@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "1.5.0"
+  version: "1.5.1"
 
 package:
   name: pvxs
@@ -9,13 +9,13 @@ package:
 
 source:
   url: https://github.com/epics-base/pvxs/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 6acb0718643fe74ca91c7b74b7d56edc3460f234992fc36834fd115b1b3522f1
+  sha256: 89d7edc237b4fe468a7c7678735a6389bf851451d55dfaaceedee00a778fe82a
   patches:
     - 0001-Add-environment-variable-for-softIocPVX.dbd.patch
     - 0002-Workaround-cfg-include-bug.patch
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
