@@ -2,6 +2,8 @@
 
 if [[ "$target_platform" == "osx-arm64" ]]; then
   export EPICS_HOST_ARCH="darwin-aarch64"
+elif [[ "$target_platform" == "linux-aarch64" ]]; then
+  export EPICS_HOST_ARCH="linux-aarch64"
 else
   export EPICS_HOST_ARCH=$(perl ${EPICS_BASE}/lib/perl/EpicsHostArch.pl)
 fi
@@ -10,7 +12,7 @@ cat <<EOF > configure/RELEASE.local
 EPICS_BASE=${EPICS_BASE}
 EOF
 
-if [[ "$target_platform" == osx* ]]; then
+if [[ "$target_platform" == osx* ]] || [[ "$target_platform" == "linux-aarch64" ]]; then
   cat << EOF >> configure/CONFIG_SITE.local
 # Force EPICS to use its built-in command line library instead of readline
 COMMANDLINE_LIBRARY=EPICS
