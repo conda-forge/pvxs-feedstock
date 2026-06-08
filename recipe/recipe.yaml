@@ -13,6 +13,7 @@ source:
   patches:
     - 0001-Add-environment-variable-for-softIocPVX.dbd.patch
     - 0002-Workaround-cfg-include-bug.patch
+    - 0003-include-CONFIG_PVXS_MODULE-in-top-level-Makefiles.patch
 
 build:
   number: 2
