@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "1.5.1"
+  version: "1.5.2"
 
 package:
   name: pvxs
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/epics-base/pvxs/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 89d7edc237b4fe468a7c7678735a6389bf851451d55dfaaceedee00a778fe82a
+  sha256: 061506998fcbfeb376ddf9c85095405197cf23a9f03a932984c40be4aa817cb0
   patches:
     - 0001-Add-environment-variable-for-softIocPVX.dbd.patch
     - 0002-Workaround-cfg-include-bug.patch
@@ -18,7 +18,7 @@ source:
       then: 0004-Disable-tests-failing-on-Windows.patch
 
 build:
-  number: 2
+  number: 1
 
 requirements:
   build:
