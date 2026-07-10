@@ -35,6 +35,13 @@ copy "include\pvxs\*"              "%PREFIX%\pvxs\include\pvxs\" >nul
 copy "dbd\*"                       "%PREFIX%\pvxs\dbd\" >nul
 copy "db\*"                        "%PREFIX%\pvxs\db\" >nul
 
+rem Tests need to find and load pvxs.dll, so they need to run after everything is copied
+make -j %CPU_COUNT% runtests
+if errorlevel 1 (
+    echo RUNTESTS FAILED
+    exit /b 1
+)
+
 if not exist "%PREFIX%\etc\conda\activate.d" mkdir "%PREFIX%\etc\conda\activate.d"
 if not exist "%PREFIX%\etc\conda\deactivate.d" mkdir "%PREFIX%\etc\conda\deactivate.d"
 echo @echo off> "%PREFIX%\etc\conda\activate.d\pvxs_activate.bat"

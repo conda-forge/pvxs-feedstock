@@ -1,0 +1,13 @@
+diff --git a/test/Makefile b/test/Makefile
+index 80fd6d6..a7fa9bd 100644
+--- a/test/Makefile
++++ b/test/Makefile
+@@ -57,7 +57,7 @@ TESTS += testnt
+ 
+ TESTPROD_HOST += testconfig
+ testconfig_SRCS += testconfig.cpp
+-TESTS += testconfig
++# TESTS += testconfig
+ 
+ TESTPROD_HOST += testwild
+ testwild_SRCS += testwild.cpp

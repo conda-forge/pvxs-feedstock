@@ -20,6 +20,10 @@ EOF
 fi
 
 make -j${CPU_COUNT} install
+if [[ "$target_platform" != "osx-arm64" ]] && [[ "$target_platform" != "linux-aarch64" ]]; then
+  # conda-forge cross-compiles on x86-64 so the ARM tests won't run
+  make -j${CPU_COUNT} runtests
+fi
 
 install -d ${PREFIX}/include/pvxs ${PREFIX}/bin/ ${PREFIX}/lib/ ${PREFIX}/pvxs/dbd ${PREFIX}/pvxs/db
 install bin/${EPICS_HOST_ARCH}/* ${PREFIX}/bin/
