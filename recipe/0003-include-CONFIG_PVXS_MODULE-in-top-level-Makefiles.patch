@@ -1,0 +1,42 @@
+diff --git a/configure/Makefile b/configure/Makefile
+--- a/configure/Makefile
++++ b/configure/Makefile
+@@ -7,6 +7,9 @@ _PVXS_BOOTSTRAP = YES
+
+ include $(TOP)/configure/CONFIG
+
++# cfg/ sometimes isn't correctly included due to a Base bug
++# so we do here (maybe again) as workaround
++include $(TOP)/setup/CONFIG_PVXS_MODULE
+ # use custom libevent2 install prefix by:
+ #   setting LIBEVENT only for single arch build
+ #   setting LIBEVENT_$(T_A) for each arch
+@@ -23,6 +26,7 @@ CFG += CONFIG_PVXS_VERSION
+ CFG += CONFIG_PVXS_VERSION
+
+ include $(TOP)/configure/RULES
+
++include $(TOP)/setup/RULES_PVXS_MODULE
+ ifdef T_A
+ install: TOOLCHAIN
+diff --git a/setup/Makefile b/setup/Makefile
+--- a/setup/Makefile
++++ b/setup/Makefile
+@@ -7,6 +7,9 @@ _PVXS_BOOTSTRAP = YES
+ _PVXS_BOOTSTRAP = YES
+
+ include $(TOP)/configure/CONFIG
+
++# cfg/ sometimes isn't correctly included due to a Base bug
++# so we do here (maybe again) as workaround
++include $(TOP)/setup/CONFIG_PVXS_MODULE
+ LIBEVENT ?= $(LIBEVENT_$(T_A))
+ LIBEVENT_$(T_A) ?= $(wildcard $(abspath $(INSTALL_LOCATION)/bundle/usr/$(T_A)))
+
+@@ -30,5 +33,6 @@ endif
+ endif
+
+ include $(TOP)/configure/RULES
+
++include $(TOP)/setup/RULES_PVXS_MODULE
+ ifdef T_A

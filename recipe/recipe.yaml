@@ -12,8 +12,10 @@ source:
   sha256: a3f4790ed24137d8b71eababf63d1a380a75a264528c5ea6c0418e12b1f89a50
   patches:
     - 0001-Add-environment-variable-for-softIocPVX.dbd.patch
+    - 0002-Workaround-cfg-include-bug.patch
+    - 0003-include-CONFIG_PVXS_MODULE-in-top-level-Makefiles.patch
     - if: win
-      then: 0002-Disable-tests-failing-on-Windows.patch
+      then: 0004-Disable-tests-failing-on-Windows.patch
 
 build:
   number: 0
