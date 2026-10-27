@@ -8,6 +8,8 @@ if "%ARCH%"=="32" (
 )
 
 echo EPICS_BASE=%EPICS_BASE%> configure\RELEASE.local
+rem Force INSTALL_LOCATION, see https://github.com/epics-base/pvxs/issues/230
+echo INSTALL_LOCATION=${TOP}/pvxs>> configure\CONFIG_SITE.local
 
 set "SCRIPTS=" & :: avoid python-scripts masking make
 set "PATH=%BUILD_PREFIX%\Library\bin;%BUILD_PREFIX%\Library\usr\bin;%PATH%"
@@ -26,14 +28,14 @@ mkdir "%PREFIX%\Library\bin" ^
       "%PREFIX%\pvxs\dbd" ^
       "%PREFIX%\pvxs\db" >nul
 
-copy "bin\%EPICS_HOST_ARCH%\*.exe" "%PREFIX%\Library\bin\" >nul
-copy "bin\%EPICS_HOST_ARCH%\*.dll" "%PREFIX%\Library\bin\" >nul
-copy "lib\%EPICS_HOST_ARCH%\*.lib" "%PREFIX%\Library\lib\" >nul
-copy "include\pvxs\*"              "%PREFIX%\Library\include\pvxs\" >nul
+copy "pvxs\bin\%EPICS_HOST_ARCH%\*.exe" "%PREFIX%\Library\bin\" >nul
+copy "pvxs\bin\%EPICS_HOST_ARCH%\*.dll" "%PREFIX%\Library\bin\" >nul
+copy "pvxs\lib\%EPICS_HOST_ARCH%\*.lib" "%PREFIX%\Library\lib\" >nul
+copy "pvxs\include\pvxs\*"              "%PREFIX%\Library\include\pvxs\" >nul
 
-copy "include\pvxs\*"              "%PREFIX%\pvxs\include\pvxs\" >nul
-copy "dbd\*"                       "%PREFIX%\pvxs\dbd\" >nul
-copy "db\*"                        "%PREFIX%\pvxs\db\" >nul
+copy "pvxs\include\pvxs\*"              "%PREFIX%\pvxs\include\pvxs\" >nul
+copy "pvxs\dbd\*"                       "%PREFIX%\pvxs\dbd\" >nul
+copy "pvxs\db\*"                        "%PREFIX%\pvxs\db\" >nul
 
 rem Tests need to find and load pvxs.dll, so they need to run after everything is copied
 make -j %CPU_COUNT% runtests

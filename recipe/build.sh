@@ -19,6 +19,11 @@ COMMANDLINE_LIBRARY=EPICS
 EOF
 fi
 
+cat << EOF >> configure/CONFIG_SITE.local
+# Force INSTALL_LOCATION for 
+INSTALL_LOCATION=\${TOP}/pvxs
+EOF
+
 make -j${CPU_COUNT} install
 if [[ "$target_platform" != "osx-arm64" ]] && [[ "$target_platform" != "linux-aarch64" ]]; then
   # conda-forge cross-compiles on x86-64 so the ARM tests won't run
@@ -26,15 +31,15 @@ if [[ "$target_platform" != "osx-arm64" ]] && [[ "$target_platform" != "linux-aa
 fi
 
 install -d ${PREFIX}/include/pvxs ${PREFIX}/bin/ ${PREFIX}/lib/ ${PREFIX}/pvxs/dbd ${PREFIX}/pvxs/db
-install bin/${EPICS_HOST_ARCH}/* ${PREFIX}/bin/
+install pvxs/bin/${EPICS_HOST_ARCH}/* ${PREFIX}/bin/
 if [[ "$target_platform" == osx* ]]; then
-  install lib/${EPICS_HOST_ARCH}/*.dylib* ${PREFIX}/lib/
+  install pvxs/lib/${EPICS_HOST_ARCH}/*.dylib* ${PREFIX}/lib/
 else
-  install lib/${EPICS_HOST_ARCH}/*.so* ${PREFIX}/lib/
+  install pvxs/lib/${EPICS_HOST_ARCH}/*.so* ${PREFIX}/lib/
 fi
-install -m 0664 include/pvxs/* ${PREFIX}/include/pvxs/
-install -m 0664 dbd/* ${PREFIX}/pvxs/dbd
-install -m 0664 db/* ${PREFIX}/pvxs/db
+install -m 0664 pvxs/include/pvxs/* ${PREFIX}/include/pvxs/
+install -m 0664 pvxs/dbd/* ${PREFIX}/pvxs/dbd
+install -m 0664 pvxs/db/* ${PREFIX}/pvxs/db
 
 IFS='.' read -r MAJOR MINOR MAINTENANCE <<< "$PKG_VERSION"
 

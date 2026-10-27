@@ -1,13 +1,27 @@
+From 1d112068ded2c8b070c924aaaa74f827d73c0c8c Mon Sep 17 00:00:00 2001
+From: "Lucas A. M. Magalhaes" <lucas.magalhaes@ess.eu>
+Date: Wed, 14 Oct 2026 14:29:28 +0200
+Subject: [PATCH 4/4] Disable tests failing on Windows
+
+The "testconfig" test is disabled on Windows since it does not run all
+the configured tests. Probably worth looking into this in the future.
+---
+ test/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 diff --git a/test/Makefile b/test/Makefile
-index 80fd6d6..a7fa9bd 100644
+index 5ede54a..db064a9 100644
 --- a/test/Makefile
 +++ b/test/Makefile
-@@ -57,7 +57,7 @@ TESTS += testnt
+@@ -67,7 +67,7 @@ TESTS += testnt
  
  TESTPROD_HOST += testconfig
  testconfig_SRCS += testconfig.cpp
 -TESTS += testconfig
-+# TESTS += testconfig
++#TESTS += testconfig
  
  TESTPROD_HOST += testwild
  testwild_SRCS += testwild.cpp
+-- 
+2.56.0
+
