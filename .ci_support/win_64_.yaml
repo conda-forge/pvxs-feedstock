@@ -9,7 +9,7 @@ channel_targets:
 cxx_compiler:
 - vs2022
 libevent:
-- 2.1.12
+- 2.1.13
 perl:
 - 5.32.1
 target_platform:
